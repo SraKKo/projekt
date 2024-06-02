@@ -2,6 +2,9 @@ import argparse
 import json
 import yaml
 import xml.etree.ElementTree as ET
+import tkinter as tk
+from tkinter import filedialog, messagebox
+
 
 def main():
     parser = argparse.ArgumentParser(description="Konwerter")
@@ -88,3 +91,20 @@ root = ET.Element("root")
 child = ET.SubElement(root, "child")
 child.text = "example_value"
 save_xml(root, 'output.xml')
+
+def load_file():
+    file_path = filedialog.askopenfilename()
+    if file_path:
+        messagebox.showinfo("Selected File", file_path)
+
+def main():
+    root = tk.Tk()
+    root.title("Example UI")
+
+    load_button = tk.Button(root, text="Load File", command=load_file)
+    load_button.pack(pady=20)
+
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
