@@ -75,3 +75,16 @@ def load_xml(file_path):
 # Example usage
 root = load_xml('data.xml')
 print(ET.tostring(root, encoding='unicode'))
+
+def save_xml(root, file_path):
+    try:
+        tree = ET.ElementTree(root)
+        tree.write(file_path)
+    except Exception as e:
+        print(f"Error saving XML: {e}")
+
+# Example usage
+root = ET.Element("root")
+child = ET.SubElement(root, "child")
+child.text = "example_value"
+save_xml(root, 'output.xml')
