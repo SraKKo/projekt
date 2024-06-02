@@ -1,5 +1,6 @@
 import argparse
 import json
+import yaml
 
 def main():
     parser = argparse.ArgumentParser(description="Konwerter")
@@ -34,3 +35,17 @@ def save_json(data, file_path):
 # Example usage
 data = {"example_key": "example_value"}
 save_json(data, 'output.json')
+
+def load_yaml(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            data = yaml.safe_load(f)
+            return data
+    except yaml.YAMLError as e:
+        print(f"Error decoding YAML: {e}")
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+
+# Example usage
+data = load_yaml('data.yml')
+print(data)
