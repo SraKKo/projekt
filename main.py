@@ -49,3 +49,14 @@ def load_yaml(file_path):
 # Example usage
 data = load_yaml('data.yml')
 print(data)
+
+def save_yaml(data, file_path):
+    try:
+        with open(file_path, 'w') as f:
+            yaml.dump(data, f, default_flow_style=False)
+    except Exception as e:
+        print(f"Error saving YAML: {e}")
+
+# Example usage
+data = {"example_key": "example_value"}
+save_yaml(data, 'output.yml')
