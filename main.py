@@ -1,6 +1,7 @@
 import argparse
 import json
 import yaml
+import xml.etree.ElementTree as ET
 
 def main():
     parser = argparse.ArgumentParser(description="Konwerter")
@@ -60,3 +61,17 @@ def save_yaml(data, file_path):
 # Example usage
 data = {"example_key": "example_value"}
 save_yaml(data, 'output.yml')
+
+def load_xml(file_path):
+    try:
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+        return root
+    except ET.ParseError as e:
+        print(f"Error parsing XML: {e}")
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+
+# Example usage
+root = load_xml('data.xml')
+print(ET.tostring(root, encoding='unicode'))
