@@ -4,6 +4,9 @@ import yaml
 import xml.etree.ElementTree as ET
 import tkinter as tk
 from tkinter import filedialog, messagebox
+from tkinter import filedialog, messagebox
+import threading
+import time
 
 
 def main():
@@ -96,6 +99,35 @@ def load_file():
     file_path = filedialog.askopenfilename()
     if file_path:
         messagebox.showinfo("Selected File", file_path)
+
+def main():
+    root = tk.Tk()
+    root.title("Example UI")
+
+    load_button = tk.Button(root, text="Load File", command=load_file)
+    load_button.pack(pady=20)
+
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
+
+def load_file_async(file_path):
+    def task():
+        time.sleep(2)  # Simulate a delay
+        messagebox.showinfo("Loaded", f"File {file_path} loaded.")
+    threading.Thread(target=task).start()
+
+def load_file():
+    file_path = filedialog.askopenfilename()
+    if file_path:
+        load_file_async(file_path)
+
+def save_file_async(data, file_path):
+    def task():
+        time.sleep(2)  # Simulate a delay
+        messagebox.showinfo("Saved", f"File {file_path} saved.")
+    threading.Thread(target=task).start()
 
 def main():
     root = tk.Tk()
