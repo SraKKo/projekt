@@ -23,3 +23,14 @@ def load_json(file_path):
 # Example usage
 data = load_json('data.json')
 print(data)
+
+def save_json(data, file_path):
+    try:
+        with open(file_path, 'w') as f:
+            json.dump(data, f, indent=4)
+    except Exception as e:
+        print(f"Error saving JSON: {e}")
+
+# Example usage
+data = {"example_key": "example_value"}
+save_json(data, 'output.json')
